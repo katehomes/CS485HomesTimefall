@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New Card", menuName = "Card")]
+[CreateAssetMenu(fileName = "New CardData", menuName = "CardData")]
 [System.Serializable]
-public class Card : ScriptableObject
+public class CardData : ScriptableObject
 {
     
     public int id;
@@ -14,8 +14,6 @@ public class Card : ScriptableObject
 
     public Texture image;
     public Faction faction;
-
-    public bool isPlaced = false;
 
     public CardType cardType;
 

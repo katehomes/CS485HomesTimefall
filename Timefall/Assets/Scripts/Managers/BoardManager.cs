@@ -33,7 +33,7 @@ public class BoardManager : MonoBehaviour
 
     public void PlaceTimelineEventForTurn(CardDisplay cardDisplay)
     {
-        if(cardDisplay.displayCard.cardType != CardType.EVENT){ return;}
+        if(cardDisplay.displayCard.data.cardType != CardType.EVENT){ return;}
 
         BoardSpace space = spaces[round-1];
 
@@ -57,10 +57,10 @@ public class BoardManager : MonoBehaviour
 
             if(eventCard == null) { continue;}
 
-            stewardsVP += eventCard.victoryPoints[0];
-            seekersVP += eventCard.victoryPoints[1];
-            sovereignsVP += eventCard.victoryPoints[2];
-            weaversVP += eventCard.victoryPoints[3];
+            stewardsVP += eventCard.eventCardData.victoryPoints[0];
+            seekersVP += eventCard.eventCardData.victoryPoints[1];
+            sovereignsVP += eventCard.eventCardData.victoryPoints[2];
+            weaversVP += eventCard.eventCardData.victoryPoints[3];
         }
 
         return new int[] {stewardsVP, seekersVP, sovereignsVP, weaversVP};
@@ -92,7 +92,7 @@ public class BoardManager : MonoBehaviour
         //For each space
             //Can card be played
                 //if so highlight
-            switch(card.cardType) 
+            switch(card.data.cardType) 
             {
                 case CardType.AGENT:
 
@@ -107,7 +107,7 @@ public class BoardManager : MonoBehaviour
                     break;
                 default:
                 //Error handling
-                    Debug.Log ("Invalid Card Type: " + card.cardType);
+                    Debug.Log ("Invalid Card Type: " + card.data.cardType);
                     return;
             }
 

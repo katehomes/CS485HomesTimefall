@@ -22,35 +22,35 @@ public class EventCardDisplay : CardDisplay
     // Start is called before the first frame update
     void Start()
     {
-        //ResetDisplay((EventCard) displayCard);
+        //ResetDisplay((EventCardData) displayCard);
     }
 
-    void ResetDisplay(EventCard eventCard) 
+    private void ResetDisplay(EventCardData eventData) 
     {
         //base card
-        nameText.text = eventCard.cardName;
-        descText.text = eventCard.description;
+        nameText.text = eventData.cardName;
+        descText.text = eventData.description;
 
-        image.texture = eventCard.image;
+        image.texture = eventData.image;
 
         
         //victory points
-        SetVictoryPoints(eventCard.victoryPoints);
+        SetVictoryPoints(eventData.victoryPoints);
     
-        SetFactionColors(GetFactionColor(eventCard.faction));
+        SetFactionColors(GetFactionColor(eventData.faction));
         
     }
 
-    void SetCard(EventCard eventCard)
+    public void SetCard(EventCard eventCard)
     {
         displayCard = eventCard;
-        ResetDisplay(eventCard);
+        ResetDisplay(eventCard.eventCardData);
     }
 
-    public void SetCard(Card eventCard)
-    {
-        SetCard((EventCard) eventCard);
-    }
+    // public void SetCard(Card eventCard)
+    // {
+    //     SetCard((EventCard) eventCard);
+    // }
 
 
     void SetFactionColors(Color color)
@@ -60,10 +60,6 @@ public class EventCardDisplay : CardDisplay
 
     void SetVictoryPoints(int[] vpArr)
     {
-        // stewardText.text = GetVPText(vpArr[0]);
-        // seekerText.text = GetVPText(vpArr[1]);
-        // sovereignText.text = GetVPText(vpArr[2]);
-        // weaverText.text = GetVPText(vpArr[3]);
 
         setVictoryPointUI(stewardText, stewardImage, vpArr[0]);
         setVictoryPointUI(seekerText, seekerImage, vpArr[1]);

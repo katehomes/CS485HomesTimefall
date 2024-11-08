@@ -23,32 +23,33 @@ public class AgentCardDisplay : CardDisplay
 
     void ResetDisplay(AgentCard agentCard) 
     {
+        AgentCardData cardData = agentCard.agentCardData;
         //base card
-        nameText.text = agentCard.cardName;
-        descText.text = agentCard.description;
+        nameText.text = cardData.cardName;
+        descText.text = cardData.description;
 
-        image.texture = agentCard.image;
+        image.texture = cardData.image;
 
         
         //dice text
-        diceTypeText.text = agentCard.diceType;
-        diceCostText.text = agentCard.diceCost.ToString();
+        diceTypeText.text = cardData.diceType;
+        diceCostText.text = cardData.diceCost.ToString();
     
-        SetFactionText(agentCard.faction);
-        SetFactionColors(GetFactionColor(agentCard.faction));
+        SetFactionText(cardData.faction);
+        SetFactionColors(GetFactionColor(cardData.faction));
         
     }
 
-    void SetCard(AgentCard agentCard)
+    public void SetCard(AgentCard agentCard)
     {
         displayCard = agentCard;
         ResetDisplay(agentCard);
     }
 
-    public void SetCard(Card agentCard)
-    {
-        SetCard((AgentCard) agentCard);
-    }
+    // public void SetCard(Card agentCard)
+    // {
+    //     SetCard((AgentCard) agentCard);
+    // }
 
     void SetFactionText(Faction faction)
     {

@@ -75,9 +75,9 @@ public class Hand : MonoBehaviour
 
         if(card == null){ return;}
 
-        CardType cardType = card.cardType;
+        CardType cardType = card.data.cardType;
 
-        // Debug.Log (card.ToString());
+        // Debug.Log (card.data.ToString());
 
         GameObject obj = null;
 
@@ -88,7 +88,8 @@ public class Hand : MonoBehaviour
                 AgentCardDisplay agentDC = obj.GetComponent<AgentCardDisplay>();
 
                 if(agentDC == null){return;} 
-                agentDC.SetCard(card);
+                AgentCard agentCard = (AgentCard) card;
+                agentDC.SetCard(agentCard);
                 agentDC.InstantiateInHand(transform);
 
                 break;
@@ -97,7 +98,8 @@ public class Hand : MonoBehaviour
                 EssenceCardDisplay essenceDC = obj.GetComponent<EssenceCardDisplay>();
 
                 if(essenceDC == null){return;} 
-                essenceDC.SetCard(card);
+                EssenceCard essenceCard = (EssenceCard) card;
+                essenceDC.SetCard(essenceCard);
                 essenceDC.InstantiateInHand(transform);
                 break;
             case CardType.EVENT:
@@ -105,12 +107,13 @@ public class Hand : MonoBehaviour
                 EventCardDisplay eventDC = obj.GetComponent<EventCardDisplay>();
 
                 if(eventDC == null){return;} 
-                eventDC.SetCard(card);
+                EventCard eventCard = (EventCard) card;
+                eventDC.SetCard(eventCard);
                 eventDC.InstantiateInHand(transform);
                 break;
             default:
             //Error handling
-                Debug.Log ("Invalid Card Type: " + cardType);
+                Debug.Log ("Invalid CardData Type: " + cardType);
                 return;
         }
 
@@ -129,9 +132,9 @@ public class Hand : MonoBehaviour
     {
         if(card == null){ return null;}
 
-        CardType cardType = card.cardType;
+        CardType cardType = card.data.cardType;
 
-        // Debug.Log (card.ToString());
+        // Debug.Log (card.data.ToString());
 
         GameObject obj = null;
 
@@ -146,7 +149,8 @@ public class Hand : MonoBehaviour
                 AgentCardDisplay agentDC = obj.GetComponent<AgentCardDisplay>();
 
                 if(agentDC == null){return null;} 
-                agentDC.SetCard(card);
+                AgentCard agentCard = (AgentCard) card;
+                agentDC.SetCard(agentCard);
                 agentDC.Place(expandedViewTransform, "EXPAND");
 
                 displayToReturn = agentDC;
@@ -156,8 +160,9 @@ public class Hand : MonoBehaviour
                 obj = Instantiate(essenceCardDisplay, new Vector3(0, 0, 0), Quaternion.identity);
                 EssenceCardDisplay essenceDC = obj.GetComponent<EssenceCardDisplay>();
 
-                if(essenceDC == null){return null;} 
-                essenceDC.SetCard(card);
+                if(essenceDC == null){return null;}
+                EssenceCard essenceCard = (EssenceCard) card ;
+                essenceDC.SetCard(essenceCard);
                 essenceDC.Place(expandedViewTransform, "EXPAND");
 
                 displayToReturn = essenceDC;
@@ -168,7 +173,8 @@ public class Hand : MonoBehaviour
                 EventCardDisplay eventDC = obj.GetComponent<EventCardDisplay>();
 
                 if(eventDC == null){return null;} 
-                eventDC.SetCard(card);
+                EventCard eventCard = (EventCard) card;
+                eventDC.SetCard(eventCard);
                 eventDC.Place(expandedViewTransform, "EXPAND");
 
                 displayToReturn = eventDC;
@@ -176,7 +182,7 @@ public class Hand : MonoBehaviour
                 break;
             default:
             //Error handling
-                Debug.Log ("Invalid Card Type: " + cardType);
+                Debug.Log ("Invalid CardData Type: " + cardType);
                 return null;
         }
 
@@ -228,10 +234,10 @@ public class Hand : MonoBehaviour
 
     public void AutoPlayTimelineCard()
     {
-        Debug.Log("AutoPlayTimelineCard");
+        // Debug.Log("AutoPlayTimelineCard");
         if(staticCards.Count == 1)
         {
-            Debug.Log("count==1");
+            // Debug.Log("count==1");
             PlayTimelineCard(staticCards[0]);
             staticCards.RemoveAt(0);
         }
@@ -272,17 +278,17 @@ public class Hand : MonoBehaviour
 
     public void BeginDragCard(CardDisplay cardDisplay)
     {
-        Debug.Log("Hand: beginDragCard");
+        // Debug.Log("Hand: beginDragCard");
         Card card = cardDisplay.displayCard;
 
         //check if enough essence to play card
         bool haveEnoughEssence = CanPlayCard(card);
 
-        Debug.Log("haveEnoughEssence = " + haveEnoughEssence);
+        // Debug.Log("haveEnoughEssence = " + haveEnoughEssence);
 
         if(!haveEnoughEssence) {return;}
 
-        Debug.Log("Hand: beginDragCard enough essence");
+        // Debug.Log("Hand: beginDragCard enough essence");
 
         //set card possibilities
         battleManager.SetCardPossibilities(card);

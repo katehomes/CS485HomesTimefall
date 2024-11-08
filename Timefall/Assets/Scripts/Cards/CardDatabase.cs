@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Card DB", menuName = "CardDB")]
+[CreateAssetMenu(fileName = "New CardData DB", menuName = "CardDB")]
 public class CardDatabase : ScriptableObject
 {
    
-    public List<Card> cardList = new List<Card>();
+    public List<CardData> cardList = new List<CardData>();
 
     void Awake() 
     {   

@@ -42,9 +42,9 @@ public class CardDisplay : MonoBehaviour,
         hand = FindObjectOfType<Hand>();
         if(displayCard != null)
         {
-            nameText.text = displayCard.cardName;
-            descText.text = displayCard.description;
-            image.texture = displayCard.image;
+            nameText.text = displayCard.data.cardName;
+            descText.text = displayCard.data.description;
+            image.texture = displayCard.data.image;
         }
 
         selectionImage.enabled = false;

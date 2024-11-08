@@ -100,7 +100,7 @@ public class TurnManager : MonoBehaviour
             return false;
         }
 
-        CardType cardType = card.cardType;
+        CardType cardType = card.data.cardType;
 
         switch(cardType) 
         {

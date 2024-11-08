@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New Agent Card", menuName = "AgentCard")]
-public class AgentCard : Card
+[CreateAssetMenu(fileName = "New Agent CardData", menuName = "AgentCardData")]
+public class AgentCardData : CardData
 {
     public string diceType;
     public int diceCost;

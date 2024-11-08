@@ -7,7 +7,7 @@ using TMPro;
 public class EssenceCardDisplay : CardDisplay
 {
 
-    void ResetDisplay(EssenceCard essenceCard) 
+    private void ResetDisplay(EssenceCardData essenceCard) 
     {
         //base card
         nameText.text = essenceCard.cardName;
@@ -19,15 +19,15 @@ public class EssenceCardDisplay : CardDisplay
         
     }
 
-    void SetCard(EssenceCard essenceCard)
+    public void SetCard(EssenceCard essenceCard)
     {
         displayCard = essenceCard;
-        ResetDisplay(essenceCard);
+        ResetDisplay(essenceCard.essenceCardData);
     }
 
-    public void SetCard(Card essenceCard)
-    {
-        SetCard((EssenceCard) essenceCard);
-    }
+    // public void SetCard(Card essenceCard)
+    // {
+    //     SetCard((EssenceCard) essenceCard);
+    // }
 
 }

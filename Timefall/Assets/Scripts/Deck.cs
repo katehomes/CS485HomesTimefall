@@ -14,7 +14,16 @@ public class Deck : MonoBehaviour
 
 
     private void Awake() {
-        cardList.AddRange(cardDB.cardList);
+
+        foreach (var cardData in cardDB.cardList)
+        {
+            Card card = new Card(cardData);
+            if(card == null)
+            {
+                Debug.Log("Card is null");
+            }
+            cardList.Add(card);
+        }
         Shuffle();
         // UpdateCountText(); 
     }
